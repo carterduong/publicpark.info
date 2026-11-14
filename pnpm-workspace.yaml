@@ -1,0 +1,6 @@
+packages:
+  - tanstack
+  - sanity
+
+allowBuilds:
+  esbuild: true

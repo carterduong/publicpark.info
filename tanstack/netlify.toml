@@ -1,0 +1,26 @@
+# Studio is built as static files into dist/client/studio, separate from the
+# site bundle, and served at /studio.
+
+[build]
+  command = "pnpm run build && pnpm --filter studio build"
+  publish = "dist/client"
+
+# Studio is a single-page app. Rewrites run before the SSR function's
+# `/*` route, and existing Studio files are still served directly.
+[[redirects]]
+  from = "/studio"
+  to = "/studio/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/studio/*"
+  to = "/studio/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[dev]
+  command = "pnpm dev"
+  targetPort = 3000
+  port = 8888

@@ -1,0 +1,4 @@
+# Netlify reads this file from the repo root, then loads tanstack/netlify.toml.
+# Studio in sanity/ is built as static files into the same deploy at /studio.
+[build]
+  base = "tanstack"

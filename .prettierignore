@@ -1,0 +1,6 @@
+pnpm-lock.yaml
+dist/
+.netlify/
+.sanity/
+.tanstack/
+**/routeTree.gen.ts

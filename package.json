@@ -1,0 +1,28 @@
+{
+  "name": "publicpark-info",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter tanstack dev",
+    "studio": "pnpm --filter studio dev",
+    "build": "pnpm --filter tanstack build && pnpm --filter studio build",
+    "preview": "pnpm --filter tanstack preview",
+    "lint": "pnpm --filter studio lint"
+  },
+  "devDependencies": {
+    "prettier": "^3.5",
+    "prettier-plugin-tailwindcss": "^0.8.1"
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ],
+    "tailwindStylesheet": "./tanstack/src/styles.css",
+    "tailwindFunctions": [
+      "cn"
+    ]
+  }
+}
