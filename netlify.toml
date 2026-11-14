@@ -1,4 +1,28 @@
-# Netlify reads this file from the repo root, then loads tanstack/netlify.toml.
-# Studio in sanity/ is built as static files into the same deploy at /studio.
+# Netlify builds from the repo root. The site is the TanStack Start app in
+# tanstack/, and the Studio in sanity/ is built as static files into the same
+# deploy at /studio. `pnpm --filter` resolves the workspace from any directory,
+# so the build command works whether Netlify runs it at the root or in tanstack/.
+
 [build]
-  base = "tanstack"
+  command = "pnpm --filter tanstack build && pnpm --filter studio build"
+  publish = "tanstack/dist/client"
+
+# Studio is a single-page app. Rewrites run before the SSR function's
+# `/*` route, and existing Studio files are still served directly.
+[[redirects]]
+  from = "/studio"
+  to = "/studio/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/studio/*"
+  to = "/studio/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[dev]
+  command = "pnpm dev"
+  targetPort = 3000
+  port = 8888
