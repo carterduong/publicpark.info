@@ -32,7 +32,7 @@ function RootComponent() {
             <Link
               key={item.to}
               to={item.to}
-              activeOptions={{exact: true}}
+              activeOptions={{exact: item.to === '/'}}
               activeProps={{'aria-current': 'page'}}
               className="underline aria-[current=page]:font-semibold"
             >
