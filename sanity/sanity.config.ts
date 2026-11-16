@@ -18,5 +18,7 @@ export default defineConfig({
 
   document: {
     singletons: ['homepage', 'info'],
+    actions: (prev, context) =>
+      context.singleton ? prev.filter(({action}) => action !== 'delete') : prev,
   },
 })
