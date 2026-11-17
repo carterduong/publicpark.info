@@ -16,6 +16,10 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as RadioRouteImport } from './routes/radio'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as ApiDraftModeDisableRouteImport } from './routes/api/draft-mode/disable'
+import { Route as ApiDraftModeEnableRouteImport } from './routes/api/draft-mode/enable'
+import { Route as ApiDraftModePerspectiveRouteImport } from './routes/api/draft-mode/perspective'
+import { Route as ApiDraftModeVariantRouteImport } from './routes/api/draft-mode/variant'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +56,26 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ProjectsRoute,
 } as any)
+const ApiDraftModeDisableRoute = ApiDraftModeDisableRouteImport.update({
+  id: '/api/draft-mode/disable',
+  path: '/api/draft-mode/disable',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDraftModeEnableRoute = ApiDraftModeEnableRouteImport.update({
+  id: '/api/draft-mode/enable',
+  path: '/api/draft-mode/enable',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDraftModePerspectiveRoute = ApiDraftModePerspectiveRouteImport.update({
+  id: '/api/draft-mode/perspective',
+  path: '/api/draft-mode/perspective',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDraftModeVariantRoute = ApiDraftModeVariantRouteImport.update({
+  id: '/api/draft-mode/variant',
+  path: '/api/draft-mode/variant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +85,10 @@ export interface FileRoutesByFullPath {
   '/radio': typeof RadioRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/api/draft-mode/disable': typeof ApiDraftModeDisableRoute
+  '/api/draft-mode/enable': typeof ApiDraftModeEnableRoute
+  '/api/draft-mode/perspective': typeof ApiDraftModePerspectiveRoute
+  '/api/draft-mode/variant': typeof ApiDraftModeVariantRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,6 +97,10 @@ export interface FileRoutesByTo {
   '/radio': typeof RadioRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/projects': typeof ProjectsIndexRoute
+  '/api/draft-mode/disable': typeof ApiDraftModeDisableRoute
+  '/api/draft-mode/enable': typeof ApiDraftModeEnableRoute
+  '/api/draft-mode/perspective': typeof ApiDraftModePerspectiveRoute
+  '/api/draft-mode/variant': typeof ApiDraftModeVariantRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,6 +111,10 @@ export interface FileRoutesById {
   '/radio': typeof RadioRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/api/draft-mode/disable': typeof ApiDraftModeDisableRoute
+  '/api/draft-mode/enable': typeof ApiDraftModeEnableRoute
+  '/api/draft-mode/perspective': typeof ApiDraftModePerspectiveRoute
+  '/api/draft-mode/variant': typeof ApiDraftModeVariantRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,8 +126,22 @@ export interface FileRouteTypes {
     | '/radio'
     | '/projects/$slug'
     | '/projects/'
+    | '/api/draft-mode/disable'
+    | '/api/draft-mode/enable'
+    | '/api/draft-mode/perspective'
+    | '/api/draft-mode/variant'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog' | '/info' | '/radio' | '/projects/$slug' | '/projects'
+  to:
+    | '/'
+    | '/blog'
+    | '/info'
+    | '/radio'
+    | '/projects/$slug'
+    | '/projects'
+    | '/api/draft-mode/disable'
+    | '/api/draft-mode/enable'
+    | '/api/draft-mode/perspective'
+    | '/api/draft-mode/variant'
   id:
     | '__root__'
     | '/'
@@ -101,6 +151,10 @@ export interface FileRouteTypes {
     | '/radio'
     | '/projects/$slug'
     | '/projects/'
+    | '/api/draft-mode/disable'
+    | '/api/draft-mode/enable'
+    | '/api/draft-mode/perspective'
+    | '/api/draft-mode/variant'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -109,6 +163,10 @@ export interface RootRouteChildren {
   InfoRoute: typeof InfoRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   RadioRoute: typeof RadioRoute
+  ApiDraftModeDisableRoute: typeof ApiDraftModeDisableRoute
+  ApiDraftModeEnableRoute: typeof ApiDraftModeEnableRoute
+  ApiDraftModePerspectiveRoute: typeof ApiDraftModePerspectiveRoute
+  ApiDraftModeVariantRoute: typeof ApiDraftModeVariantRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -162,6 +220,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof ProjectsRoute
     }
+    '/api/draft-mode/disable': {
+      id: '/api/draft-mode/disable'
+      path: '/api/draft-mode/disable'
+      fullPath: '/api/draft-mode/disable'
+      preLoaderRoute: typeof ApiDraftModeDisableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/draft-mode/enable': {
+      id: '/api/draft-mode/enable'
+      path: '/api/draft-mode/enable'
+      fullPath: '/api/draft-mode/enable'
+      preLoaderRoute: typeof ApiDraftModeEnableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/draft-mode/perspective': {
+      id: '/api/draft-mode/perspective'
+      path: '/api/draft-mode/perspective'
+      fullPath: '/api/draft-mode/perspective'
+      preLoaderRoute: typeof ApiDraftModePerspectiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/draft-mode/variant': {
+      id: '/api/draft-mode/variant'
+      path: '/api/draft-mode/variant'
+      fullPath: '/api/draft-mode/variant'
+      preLoaderRoute: typeof ApiDraftModeVariantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -185,6 +271,10 @@ const rootRouteChildren: RootRouteChildren = {
   InfoRoute: InfoRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   RadioRoute: RadioRoute,
+  ApiDraftModeDisableRoute: ApiDraftModeDisableRoute,
+  ApiDraftModeEnableRoute: ApiDraftModeEnableRoute,
+  ApiDraftModePerspectiveRoute: ApiDraftModePerspectiveRoute,
+  ApiDraftModeVariantRoute: ApiDraftModeVariantRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
