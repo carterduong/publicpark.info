@@ -1,7 +1,12 @@
-import type {ReactNode} from 'react'
+import {lazy, Suspense, type ReactNode} from 'react'
 import {HeadContent, Link, Outlet, Scripts, createRootRoute} from '@tanstack/react-router'
 
+import {getDraftMode} from '../lib/get-draft-mode'
 import appCss from '../styles.css?url'
+
+const VisualEditing = lazy(() =>
+  import('../components/visual-editing').then((module) => ({default: module.VisualEditing})),
+)
 
 const navItems = [
   {to: '/', label: 'Home'},
@@ -12,6 +17,7 @@ const navItems = [
 ] as const
 
 export const Route = createRootRoute({
+  loader: () => getDraftMode(),
   head: () => ({
     meta: [
       {charSet: 'utf-8'},
@@ -24,6 +30,8 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
+  const draftMode = Route.useLoaderData()
+
   return (
     <RootDocument>
       <header className="flex flex-wrap gap-x-4 gap-y-2 p-6 pb-0">
@@ -46,6 +54,11 @@ function RootComponent() {
         </a>
       </header>
       <Outlet />
+      {draftMode ? (
+        <Suspense fallback={null}>
+          <VisualEditing />
+        </Suspense>
+      ) : null}
     </RootDocument>
   )
 }
