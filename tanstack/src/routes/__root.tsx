@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react'
 import {HeadContent, Link, Outlet, Scripts, createRootRoute} from '@tanstack/react-router'
 
+import {DesignTools} from '../components/dev/DesignTools'
 import appCss from '../styles.css?url'
 
 const navItems = [
@@ -58,6 +59,7 @@ function RootDocument({children}: Readonly<{children: ReactNode}>) {
       </head>
       <body>
         {children}
+        {import.meta.env.DEV && <DesignTools />}
         <Scripts />
       </body>
     </html>
