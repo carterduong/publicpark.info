@@ -44,6 +44,21 @@ export const project = defineType({
       ],
     }),
     defineField({
+      name: 'coverMedia',
+      title: 'Cover Media',
+      description: 'An image or a video.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'image',
+        }),
+        defineArrayMember({
+          type: 'mux.video',
+        }),
+      ],
+      validation: (rule) => rule.max(1),
+    }),
+    defineField({
       name: 'media',
       title: 'Media',
       type: 'array',
