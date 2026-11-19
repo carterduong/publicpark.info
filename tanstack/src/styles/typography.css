@@ -12,6 +12,12 @@
   letter-spacing: 4%;
 }
 
+@utility t-md {
+  font-size: 23px;
+  line-height: 27px;
+  letter-spacing: 5%;
+}
+
 @utility t-display {
   font-family: 'Arial', sans-serif;
   font-size: 30px;
