@@ -14,4 +14,7 @@ export const info = defineType({
       of: [defineArrayMember({type: 'block'})],
     }),
   ],
+  preview: {
+    prepare: () => ({title: 'Info'}),
+  },
 })
