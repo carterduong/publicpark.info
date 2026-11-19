@@ -1,6 +1,7 @@
 import {PortableText} from '@portabletext/react'
 import {createFileRoute, Link} from '@tanstack/react-router'
 
+import {BottomNav} from '../components/BottomNav'
 import {getInfo} from '../lib/sanity/info'
 import {getCentralParkWeather} from '../lib/weather'
 
@@ -23,23 +24,29 @@ function InfoPage() {
       <div className="col-span-3 flex flex-col gap-[1lh] text-center t-md lowercase md:col-span-10 md:col-start-2">
         {info?.body && <PortableText value={info.body} />}
       </div>
-      <div className="fixed bottom-0 left-0 flex w-screen items-center justify-between p-6">
-        {weather && (
-          <p>
-            <span className="block t-body-serif uppercase">Central Park, New York, NY</span>
-            <span className="block t-body-sans">
-              it is {weather.fahrenheit}° f{weather.description && ` and ${weather.description}`}
-            </span>
-          </p>
-        )}
-        <div className="flex flex-row gap-[60px] t-display">
-          <button>sit down</button>
-          <button>look up</button>
-        </div>
-        <Link to="/" className="t-display">
-          back
-        </Link>
-      </div>
+      <BottomNav
+        start={
+          weather && (
+            <p>
+              <span className="block t-body-serif uppercase">Central Park, New York, NY</span>
+              <span className="block t-body-sans">
+                it is {weather.fahrenheit}° f{weather.description && ` and ${weather.description}`}
+              </span>
+            </p>
+          )
+        }
+        center={
+          <div className="flex flex-row gap-[60px] t-display">
+            <button>sit down</button>
+            <button>look up</button>
+          </div>
+        }
+        end={
+          <Link to="/" className="t-display">
+            back
+          </Link>
+        }
+      />
     </main>
   )
 }
