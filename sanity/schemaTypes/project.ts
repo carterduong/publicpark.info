@@ -43,5 +43,18 @@ export const project = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'media',
+      title: 'Media',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'image',
+        }),
+        defineArrayMember({
+          type: 'mux.video',
+        }),
+      ],
+    }),
   ],
 })
