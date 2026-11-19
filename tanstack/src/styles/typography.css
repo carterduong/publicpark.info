@@ -1,0 +1,20 @@
+@utility t-body-serif {
+  font-family: 'Times New Roman', serif;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 22%;
+}
+
+@utility t-body-sans {
+  font-family: 'Arial', sans-serif;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 4%;
+}
+
+@utility t-display {
+  font-family: 'Arial', sans-serif;
+  font-size: 30px;
+  line-height: 19px;
+  letter-spacing: 4%;
+}
