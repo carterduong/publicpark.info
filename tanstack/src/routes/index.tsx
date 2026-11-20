@@ -16,7 +16,7 @@ function Home() {
   const [isGrid, setIsGrid] = useState(false)
 
   return (
-    <main className="p-6">
+    <main className="px-margin py-6">
       {isGrid ? <ProjectGrid projects={projects} /> : <ProjectCarousel projects={projects} />}
       <BottomNav
         className="t-display"

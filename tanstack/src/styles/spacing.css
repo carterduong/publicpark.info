@@ -1,0 +1,9 @@
+:root {
+  --gutter: 8px;
+  --margin: 5px;
+}
+
+@theme inline {
+  --spacing-gutter: var(--gutter);
+  --spacing-margin: var(--margin);
+}

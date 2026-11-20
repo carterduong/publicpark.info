@@ -27,7 +27,7 @@ function Cover({cover}: {cover: ProjectCover}) {
 
 export function ProjectGrid({projects}: {projects: ProjectListItem[]}) {
   return (
-    <ul className="grid grid-cols-3 gap-6 md:grid-cols-12">
+    <ul className="grid grid-cols-3 gap-gutter md:grid-cols-12">
       {projects.map((project) => (
         <li key={project._id} className="col-span-3">
           <Link to="/projects/$slug" params={{slug: project.slug}} className="flex flex-col gap-2">

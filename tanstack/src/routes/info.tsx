@@ -44,7 +44,7 @@ function InfoPage() {
     <main
       data-info-mode={isSitting ? 'sitting' : 'looking'}
       data-sky={sky}
-      className="grid min-h-svh grid-cols-3 gap-2 px-[5px] md:grid-cols-12"
+      className="grid min-h-svh grid-cols-3 gap-gutter px-margin md:grid-cols-12"
     >
       <div className="col-span-3 flex flex-col gap-[1lh] text-center t-md lowercase md:col-span-10 md:col-start-2">
         {info?.body && <PortableText value={info.body} components={components} />}

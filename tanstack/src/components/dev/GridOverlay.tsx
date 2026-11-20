@@ -4,8 +4,6 @@ import type {CSSProperties} from 'react'
 /** Placeholder until the layout grid is decided. */
 const COLUMNS = 12
 const MOBILE_COLUMNS = 3
-const GUTTER = '8px'
-const MARGIN = '5px'
 const COLUMN_COLOR = '#ff2bd6'
 const COLUMN_OPACITY = 0.28
 const MARGIN_COLOR = '#00c2ff'
@@ -17,7 +15,7 @@ const columnStyle: CSSProperties = {
 }
 
 const marginStyle: CSSProperties = {
-  border: `${MARGIN} solid ${MARGIN_COLOR}`,
+  border: `var(--margin) solid ${MARGIN_COLOR}`,
   opacity: MARGIN_OPACITY,
 }
 
@@ -29,8 +27,7 @@ export function GridOverlay({open}: {open: boolean}) {
       <div aria-hidden className="pointer-events-none fixed inset-0 z-40" style={marginStyle} />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-40 flex"
-        style={{gap: GUTTER, paddingInline: MARGIN}}
+        className="pointer-events-none fixed inset-0 z-40 flex gap-gutter px-margin"
       >
         {Array.from({length: COLUMNS}, (_, index) => (
           <div
