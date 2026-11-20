@@ -15,6 +15,21 @@ export type Weather = {
   description: string | null
 }
 
+const DAY_START_HOUR = 6
+const NIGHT_START_HOUR = 18
+
+/** Day or night by the clock in New York, wherever the visitor is. */
+export function getNewYorkSky(now = new Date()): 'day' | 'night' {
+  const hour = Number(
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      hour: 'numeric',
+      hourCycle: 'h23',
+    }).format(now),
+  )
+  return hour >= DAY_START_HOUR && hour < NIGHT_START_HOUR ? 'day' : 'night'
+}
+
 export const getCentralParkWeather = createServerFn({method: 'GET'}).handler(
   async (): Promise<Weather | null> => {
     try {

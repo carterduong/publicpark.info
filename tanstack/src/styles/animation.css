@@ -1,0 +1,41 @@
+/*
+ * Page-wide view transitions wipe the new page over the old one. The mask
+ * is 2.5 screens tall: one opaque screen, a soft gradient half a screen
+ * tall, and one clear screen, so the blurry edge is half the viewport.
+ * Looking wipes downward. Everything else wipes upward.
+ */
+::view-transition-old(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: wipe-up 2000ms ease-in-out;
+  mask-image: linear-gradient(to top, black 40%, transparent 60%);
+  mask-size: 100% 250%;
+  mask-repeat: no-repeat;
+  mask-position: 0 100%;
+}
+
+:root:has([data-info-mode='looking'])::view-transition-new(root) {
+  animation-name: wipe-down;
+  mask-image: linear-gradient(to bottom, black 40%, transparent 60%);
+  mask-position: 0 0;
+}
+
+@keyframes wipe-up {
+  from {
+    mask-position: 0 0;
+  }
+  to {
+    mask-position: 0 100%;
+  }
+}
+
+@keyframes wipe-down {
+  from {
+    mask-position: 0 100%;
+  }
+  to {
+    mask-position: 0 0;
+  }
+}

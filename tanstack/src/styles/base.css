@@ -9,9 +9,32 @@
     min-height: 100%;
   }
 
+  /* With its own background, html stops body's color spreading to the canvas, which view transitions don't snapshot. */
+  html {
+    background-color: white;
+  }
+
   body {
+    min-height: 100svh;
     margin: 0;
     font-family: 'Arial', sans-serif;
+  }
+
+  /* The Info page's colors reach the root header, which renders outside its <main>. */
+  body:has([data-info-mode='sitting']) {
+    color: var(--green);
+  }
+
+  body:has([data-info-mode='looking']) {
+    color: white;
+  }
+
+  body:has([data-info-mode='looking'][data-sky='day']) {
+    background-color: var(--day);
+  }
+
+  body:has([data-info-mode='looking'][data-sky='night']) {
+    background-color: var(--night);
   }
 
   :focus-visible {
