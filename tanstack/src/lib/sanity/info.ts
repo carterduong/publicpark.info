@@ -12,7 +12,7 @@ type Block = {
   listItem?: string
   level?: number
   children?: {_type: string; _key: string; text?: string; marks?: string[]}[]
-  markDefs?: {_type: string; _key: string; href?: string}[]
+  markDefs?: {_type: string; _key: string; href?: string; email?: string}[]
 }
 
 export type Info = {

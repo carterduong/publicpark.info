@@ -1,4 +1,4 @@
-import {PortableText} from '@portabletext/react'
+import {PortableText, type PortableTextComponents} from '@portabletext/react'
 import {createFileRoute, Link} from '@tanstack/react-router'
 
 import {BottomNav} from '../components/BottomNav'
@@ -16,13 +16,19 @@ export const Route = createFileRoute('/info')({
   component: InfoPage,
 })
 
+const components: PortableTextComponents = {
+  marks: {
+    email: ({value, children}) => <a href={`mailto:${value?.email}`}>{children}</a>,
+  },
+}
+
 function InfoPage() {
   const {info, weather} = Route.useLoaderData()
 
   return (
     <main className="grid min-h-svh grid-cols-3 gap-2 px-[5px] md:grid-cols-12">
       <div className="col-span-3 flex flex-col gap-[1lh] text-center t-md lowercase md:col-span-10 md:col-start-2">
-        {info?.body && <PortableText value={info.body} />}
+        {info?.body && <PortableText value={info.body} components={components} />}
       </div>
       <BottomNav
         start={
