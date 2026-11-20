@@ -18,6 +18,10 @@
     min-height: 100svh;
     margin: 0;
     font-family: 'Arial', sans-serif;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: color 250ms ease-in-out;
+    }
   }
 
   /* The Info page's colors reach the root header, which renders outside its <main>. */
