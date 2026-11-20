@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mux/mux-video-react": "^0.31.6",
     "@portabletext/react": "^8.0.1",
     "@sanity/client": "^8.16.0",
     "@tailwindcss/vite": "^4.3.5",
