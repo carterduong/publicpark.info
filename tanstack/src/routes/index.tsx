@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {createFileRoute, Link} from '@tanstack/react-router'
+import {cn} from 'cnfast'
 
 import {BottomNav} from '../components/BottomNav'
 import {ProjectCarousel} from '../components/ProjectCarousel'
@@ -19,7 +20,7 @@ function Home() {
     <main className="px-margin py-6">
       {isGrid ? <ProjectGrid projects={projects} /> : <ProjectCarousel projects={projects} />}
       <BottomNav
-        className="t-display"
+        className={cn('t-display', !isGrid && 'text-white mix-blend-exclusion')}
         start={isGrid && <span>map</span>}
         center={
           <div className="flex flex-row gap-[60px]">
