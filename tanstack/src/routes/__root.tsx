@@ -27,7 +27,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <header className="flex w-full justify-center p-6">
+      <header className="relative z-10 flex w-full justify-center p-6 [body:has([data-carousel])_&]:text-white [body:has([data-carousel])_&]:mix-blend-exclusion">
         <h1 className="t-body-sans">
           <span className="t-body-serif uppercase">Public Park</span> is a studio that takes ideas
           on a walk <button>( ... )</button>

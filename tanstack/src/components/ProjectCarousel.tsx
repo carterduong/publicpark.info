@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {Link} from '@tanstack/react-router'
 import MuxVideo from '@mux/mux-video-react'
 
@@ -9,33 +9,16 @@ const fullScreen = 'fixed inset-0 -z-10 size-full object-cover'
 
 type ProjectCarouselProps = {
   projects: ProjectListItem[]
-  /** Milliseconds each project stays up. */
-  interval?: number
 }
 
-export function ProjectCarousel({projects, interval = 3000}: ProjectCarouselProps) {
+export function ProjectCarousel({projects}: ProjectCarouselProps) {
   const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
-
-  useEffect(() => {
-    if (paused || projects.length < 2) return
-    const id = setInterval(() => setIndex((current) => (current + 1) % projects.length), interval)
-    return () => clearInterval(id)
-  }, [paused, interval, projects.length])
 
   const project = projects[index % projects.length]
   if (!project) return null
 
   return (
-    <Link
-      to="/projects/$slug"
-      params={{slug: project.slug}}
-      className="block"
-      onPointerEnter={() => setPaused(true)}
-      onPointerLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-    >
+    <div data-carousel>
       {project.cover?._type === 'mux.video' && project.cover.playbackId ? (
         <MuxVideo
           key={project._id}
@@ -56,10 +39,20 @@ export function ProjectCarousel({projects, interval = 3000}: ProjectCarouselProp
           />
         )
       )}
-      <div className="fixed bottom-6 left-6">
+      <button
+        type="button"
+        aria-label="Next project"
+        onClick={() => setIndex((current) => (current + 1) % projects.length)}
+        className="fixed inset-0 z-0 size-full cursor-pointer"
+      />
+      <Link
+        to="/projects/$slug"
+        params={{slug: project.slug}}
+        className="fixed bottom-6 left-6 z-10 block text-white mix-blend-exclusion"
+      >
         <h2 className="block t-body-serif uppercase">{project.title}</h2>
         {project.subtitle && <h3 className="block t-body-sans lowercase">{project.subtitle}</h3>}
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
